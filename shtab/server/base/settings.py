@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'base.middleware.SaveIpMiddleware',
 ]
 
 ROOT_URLCONF = 'base.urls'
@@ -83,7 +84,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'qa123we',
         'HOST': 'localhost',
-        'PORT': '5432'
+        'PORT': '5433' # 32
 
     }
 }
