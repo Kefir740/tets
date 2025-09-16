@@ -2,6 +2,8 @@
 import sys
 from wsgiref.simple_server import make_server
 
+import db_logic
+from db_logic import add_record
 import mapscript
 
 
@@ -12,6 +14,7 @@ class PubMapWEB:
     """
 
     def __init__(self, mapfile, port=3007, host='0.0.0.0'):
+        db_logic.add_record()
         self.wsgi_host = host
         self.wsgi_port = port
         with open(mapfile) as f:
