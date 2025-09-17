@@ -1,0 +1,13 @@
+<MapsList>:
+    MenuBox:
+        orientation: 'vertical'
+        SmallButton:
+            text: 'Назад'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'main'
+
+        RecycleView:
+            id: table
+
+

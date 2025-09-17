@@ -3,13 +3,11 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Session
 from sqlalchemy import Column, Integer, String
 
-# строка подключения
+
 sqlite_database = "sqlite:///maps.db"
-# создаем движок SqlAlchemy
 engine = create_engine(sqlite_database, echo=True)
 
 
-# создаем модель, объекты которой будут храниться в бд
 class Base(DeclarativeBase):
     pass
 
@@ -23,34 +21,45 @@ class Maps(Base):
     gjson = Column(String)
 
 
-# создаем таблицы
 Base.metadata.create_all(bind=engine)
 
 
-def add_record(mapname='test_name', mapstyle='test_style', gjson='test_json'):
+def add_record(mapname, mapstyle, gjson):
     with Session(autoflush=False, bind=engine) as db:
         new_map = Maps(mapname=mapname,
                        mapstyle=mapstyle,
                        gjson=gjson)
-        db.add(new_map)  # добавляем в бд
-        db.commit()  # сохраняем изменения
+        db.add(new_map)
+        db.commit()
 
 
 def delete_record(mapname):
     with Session(autoflush=False, bind=engine) as db:
-        pass
+        del_map = db.query(Maps).filter(Maps.mapname==mapname).first()
+        db.delete(del_map)
+        db.commit()
 
 
 def get_mapstyle(mapname):
     with Session(autoflush=False, bind=engine) as db:
-        pass
+        mapstyle = db.query(Maps).filter(Maps.mapname==mapname).first()
+        return mapstyle.mapstyle
 
-#
-# # создаем сессию подключения к бд
-# with Session(autoflush=False, bind=engine) as db:
-#     pass
-    # создаем объект Person для добавления в бд
-    # tom = Maps()
-    # db.add(tom)  # добавляем в бд
-    # db.commit()  # сохраняем изменения
-    # print(tom.id)  # можно получить установленный id
+
+def get_maps_list():
+    with Session(autoflush=False, bind=engine) as db:
+        maps_list = list(db.query(Maps.mapname).order_by(Maps.id))
+        # print(maps_list)
+        return maps_list
+
+
+if __name__ == '__main__':
+    print(get_maps_list())
+    # for i in range(1, 50):
+    #     add_record(mapname=f'test_name{i}',
+    #                mapstyle='test_style',
+    #                gjson='test_json')
+
+    # print('MAPSTYLE: ', get_mapstyle(mapname='test_name'))
+    #
+    # delete_record(mapname='test_name')

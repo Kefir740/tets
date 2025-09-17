@@ -1,0 +1,61 @@
+<MenuBox@BoxLayout>
+    spacing: 30
+    padding: 30
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: (255/255, 255/255, 255/255, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<NormalButton@Button>
+    pos_hint: {'center_x': 0.5}
+    background_normal: ''
+    background_color: (68/255, 114/255, 196/255, 1)
+    color: 'white'
+    size_hint: .6, .2
+    font_size: 32
+    valign: 'middle'
+    halign: 'center'
+
+
+<SmallButton@NormalButton>
+    size_hint: .3, .1
+
+
+<InputField@TextInput>
+    size_hint: .5, .1
+    background_color: (0, 0, 0, .1)
+    background_normal: ''
+    background_active: ''
+    background_image: ''
+    pos_hint: {'center_x': 0.5}
+    color: (1, 0, 1, 1)
+    font_size: 32
+    valign: 'middle'
+    halign: 'center'
+    multiline: False
+    hint_text_color: (0, 0, 0, .3)
+    cursor_color: (0, 0, 0, .8)
+
+
+<SimpleLabel@Label>
+    valign: 'middle'
+    halign: 'center'
+    size_hint : 1, 0.1
+    bold: True
+    color: 'black'
+    font_size: 32
+
+
+<CustomLabel@Label>
+    valign: 'middle'
+    halign: 'center'
+    size_hint : 0.3, 0.1
+    color: 'black'
+    bold: True
+    font_size: 32
+    pos_hint : {"x":0.35}
+

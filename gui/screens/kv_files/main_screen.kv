@@ -1,0 +1,14 @@
+<MainScreen>:
+    MenuBox:
+        orientation: 'vertical'
+        NormalButton:
+            text: 'Добавить картостиль'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'add_map'
+
+        NormalButton:
+            text: 'Список картостилей'
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'maps_list'
